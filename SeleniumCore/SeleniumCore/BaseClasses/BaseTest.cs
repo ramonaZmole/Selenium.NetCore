@@ -1,7 +1,9 @@
 ﻿using System.IO;
 using System.Reflection;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using SeleniumCore.Helpers;
 using SeleniumCore.Pages;
 
 namespace SeleniumCore.BaseClasses
@@ -11,10 +13,19 @@ namespace SeleniumCore.BaseClasses
         protected static IWebDriver Driver;
         public LoginPage LoginPage;
 
-        public void SetupTest()
+        public AppSettings Configuration = ConfigurationRoot.GetApplicationConfiguration();
+
+        [TestInitialize]
+        public void Setup()
         {
             StartDriver();
             InitializePages();
+        }
+
+        [TestCleanup]
+        public void CleanUp()
+        {
+            Driver.Quit();
         }
 
         private static void StartDriver()
