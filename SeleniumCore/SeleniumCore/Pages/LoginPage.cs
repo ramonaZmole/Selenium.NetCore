@@ -1,5 +1,5 @@
 ﻿using OpenQA.Selenium;
-using SeleniumCore.BaseClasses;
+using SeleniumCore.Helpers.BaseClasses;
 
 namespace SeleniumCore.Pages
 {
