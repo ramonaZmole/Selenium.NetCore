@@ -8,27 +8,14 @@ namespace SeleniumCore.Tests
     [TestClass]
     public class UserCanLogIn : BaseTest
     {
-        [TestInitialize]
-        public void Setup()
-        {
-            SetupTest();
-        }
-
         [TestMethod]
         public void UserCanLogInTest()
         {
-            GoTo(Constants.Url);
+            GoTo(Configuration.Url);
 
             LoginPage.PerformLogin(Constants.StandardUser, Constants.Password);
 
-            Driver.Url.Should().Be($"{Constants.Url}inventory.html");
+            Driver.Url.Should().Be($"{Configuration.Url}inventory.html");
         }
-
-        [TestCleanup]
-        public void CleanUp()
-        {
-            Driver.Quit();
-        }
-
     }
 }
