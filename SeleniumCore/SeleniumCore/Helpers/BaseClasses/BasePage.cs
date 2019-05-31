@@ -4,7 +4,7 @@ using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
-namespace SeleniumCore.BaseClasses
+namespace SeleniumCore.Helpers.BaseClasses
 {
     public class BasePage
     {

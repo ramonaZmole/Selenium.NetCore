@@ -3,10 +3,9 @@ using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using SeleniumCore.Helpers;
 using SeleniumCore.Pages;
 
-namespace SeleniumCore.BaseClasses
+namespace SeleniumCore.Helpers.BaseClasses
 {
     public class BaseTest
     {

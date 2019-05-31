@@ -1,7 +1,7 @@
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SeleniumCore.BaseClasses;
 using SeleniumCore.Helpers;
+using SeleniumCore.Helpers.BaseClasses;
 
 namespace SeleniumCore.Tests
 {
