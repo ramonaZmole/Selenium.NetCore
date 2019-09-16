@@ -5,10 +5,6 @@ namespace SeleniumCore.Pages
 {
     public class LoginPage : BasePage
     {
-        public LoginPage(IWebDriver driver) : base(driver)
-        {
-        }
-
         #region Selectors
 
         private readonly By _userNameInput = By.Id("user-name");

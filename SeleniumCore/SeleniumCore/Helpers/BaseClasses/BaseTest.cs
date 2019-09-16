@@ -1,47 +1,22 @@
-﻿using System.IO;
-using System.Reflection;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using SeleniumCore.Pages;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace SeleniumCore.Helpers.BaseClasses
 {
     public class BaseTest
     {
-        protected static IWebDriver Driver;
-        public LoginPage LoginPage;
-
         public AppSettings Configuration = ConfigurationRoot.GetApplicationConfiguration();
 
         [TestInitialize]
         public void Setup()
         {
-            StartDriver();
-            InitializePages();
+            Browser.StartDriver();
         }
 
         [TestCleanup]
         public void CleanUp()
         {
-            Driver.Quit();
+            Browser.Driver.Close();
+            Browser.Driver.Quit();
         }
-
-        private static void StartDriver()
-        {
-            var outputPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            Driver = new ChromeDriver(outputPath);
-        }
-
-        public void GoTo(string url)
-        {
-            Driver.Navigate().GoToUrl(url);
-        }
-
-        private void InitializePages()
-        {
-            LoginPage = new LoginPage(Driver);
-        }
-
     }
 }

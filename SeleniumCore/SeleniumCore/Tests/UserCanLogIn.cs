@@ -11,11 +11,11 @@ namespace SeleniumCore.Tests
         [TestMethod]
         public void UserCanLogInTest()
         {
-            GoTo(Configuration.Url);
+            Browser.GoTo(Configuration.Url);
 
-            LoginPage.PerformLogin(Constants.StandardUser, Constants.Password);
+            Pages.LoginPage.PerformLogin(Constants.StandardUser, Constants.Password);
 
-            Driver.Url.Should().Be($"{Configuration.Url}inventory.html");
+            Browser.Driver.Url.Should().Be($"{Configuration.Url}inventory.html");
         }
     }
 }
