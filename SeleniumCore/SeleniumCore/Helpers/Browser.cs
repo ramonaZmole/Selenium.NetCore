@@ -11,12 +11,12 @@ namespace SeleniumCore.Helpers
 
         public static void StartDriver()
         {
-            var browserPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            var driverPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
             var options = new ChromeOptions();
             options.AddArgument("--start-maximized");
 
-            Driver = new ChromeDriver(browserPath, options);
+            Driver = new ChromeDriver(driverPath, options);
         }
 
         public static void GoTo(string url)
