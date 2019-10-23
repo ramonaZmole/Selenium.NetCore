@@ -15,7 +15,7 @@ namespace SeleniumCore.Pages
 
         public void PerformLogin(string username, string password)
         {
-            Wait(_loginButton);
+            WaitUntilElementIsVisible(_loginButton);
             SendKeys(_userNameInput, username);
             SendKeys(_passwordInput, password);
             Submit(_loginButton);

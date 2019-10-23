@@ -7,7 +7,7 @@ namespace SeleniumCore.Helpers.BaseClasses
 {
     public class BasePage
     {
-        public void Wait(By element)
+        public void WaitUntilElementIsVisible(By element)
         {
             var wait = new WebDriverWait(Browser.Driver, TimeSpan.FromSeconds(10));
             wait.Until(ExpectedConditions.ElementIsVisible(element));
