@@ -15,6 +15,7 @@ namespace SeleniumCore.Tests
 
             Pages.LoginPage.PerformLogin(Constants.StandardUser, Constants.Password);
 
+            //assert
             Browser.Driver.Url.Should().Be($"{Configuration.Url}inventory.html");
         }
     }
