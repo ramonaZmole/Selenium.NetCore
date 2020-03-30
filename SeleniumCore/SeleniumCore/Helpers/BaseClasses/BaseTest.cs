@@ -15,6 +15,7 @@ namespace SeleniumCore.Helpers.BaseClasses
         [TestCleanup]
         public void CleanUp()
         {
+            Browser.CheckLogs();
             Browser.Driver.Close();
             Browser.Driver.Quit();
         }

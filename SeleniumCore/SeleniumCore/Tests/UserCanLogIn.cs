@@ -13,7 +13,7 @@ namespace SeleniumCore.Tests
         {
             Browser.GoTo(Configuration.Url);
 
-            Pages.LoginPage.PerformLogin(Constants.StandardUser, Constants.Password);
+            Pages.LoginPage.PerformLogin(Constants.ProblemUser, Constants.Password);
 
             //assert
             Browser.Driver.Url.Should().Be($"{Configuration.Url}inventory.html");
