@@ -31,9 +31,9 @@ namespace SeleniumCore.Tests
         [DataRow(Constants.StandardUser, 1)]
         [DataRow(Constants.StandardUser, 2)]
         [DataRow(Constants.StandardUser, 3)]
-        [DataRow(Constants.ProblemUser, 1)]
-        [DataRow(Constants.ProblemUser, 2)]
-        [DataRow(Constants.ProblemUser, 3)]
+        //[DataRow(Constants.ProblemUser, 1)]
+        //[DataRow(Constants.ProblemUser, 2)]
+        //[DataRow(Constants.ProblemUser, 3)]
         [TestMethod]
         public void ProductCanBeAddedAndBeRemovedFromCartFromProductDetailsPageTest(string user, int materialIndex)
         {
