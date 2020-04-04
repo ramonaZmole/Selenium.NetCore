@@ -10,14 +10,26 @@ namespace SeleniumCore.Helpers
     {
         public static IWebDriver Driver;
 
-        public static void StartDriver()
+        public static void StartDriver(bool useHeadless = true)
         {
             var executingLocation = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
             var options = new ChromeOptions();
             options.AddArgument("--start-maximized");
 
+            var downloadPath = Path.Combine(executingLocation, "Download");
+            options.AddUserProfilePreference("download.default_directory", downloadPath);
+            options.AddUserProfilePreference("download.prompt_for_download", false);
+            options.AddUserProfilePreference("disable-popup-blocking", "true");
+
+            if (useHeadless)
+            {
+                options.AddArgument("--window-size=1920,1080");
+                options.AddArgument("--headless");
+            }
+
             options.SetLoggingPreference(LogType.Browser, LogLevel.All);
+
             Driver = new ChromeDriver(executingLocation, options);
         }
 
@@ -41,5 +53,6 @@ namespace SeleniumCore.Helpers
             foreach (var log in logs)
                 AssertLogs(log.Message);
         }
+
     }
 }

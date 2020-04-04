@@ -26,5 +26,32 @@ namespace SeleniumCore.Helpers
                 return false;
             }
         }
+
+        public static string GetText(this By selector)
+        {
+            try
+            {
+                return Browser.Driver.FindElement(selector).Text;
+            }
+            catch (WebDriverException)
+            {
+                return string.Empty;
+            }
+        }
+
+        public static void Click(this By selector)
+        {
+            selector.WaitUntilElementIsVisible();
+            if (!selector.Exists()) return;
+
+            Browser.Driver.FindElement(selector).Click();
+        }
+
+        private static bool Exists(this By selector)
+        {
+            var count = Browser.Driver.FindElements(selector).Count;
+            return count > 0;
+        }
+
     }
 }

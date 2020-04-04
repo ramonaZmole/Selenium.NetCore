@@ -13,11 +13,11 @@ namespace SeleniumCore.Pages
 
         #endregion
 
-        public void PerformLogin(string username, string password)
+        public void PerformLogin(string username)
         {
             _loginButton.WaitUntilElementIsVisible();
             _userNameInput.SendKeys(username);
-            _passwordInput.SendKeys(password);
+            _passwordInput.SendKeys(Constants.Password);
             _loginButton.Submit();
         }
     }

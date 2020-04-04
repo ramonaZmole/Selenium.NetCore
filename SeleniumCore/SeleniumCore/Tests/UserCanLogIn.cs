@@ -9,14 +9,14 @@ namespace SeleniumCore.Tests
     public class UserCanLogIn : BaseTest
     {
         [DataRow(Constants.StandardUser)]
-        [DataRow(Constants.ProblemUser)]
-        [DataRow(Constants.LockedOutUser)]
+        //[DataRow(Constants.ProblemUser)]
+        //[DataRow(Constants.LockedOutUser)]
         [TestMethod]
         public void UserCanLogInTest(string user)
         {
             Browser.GoTo(Configuration.Url);
 
-            Pages.LoginPage.PerformLogin(user, Constants.Password);
+            Pages.LoginPage.PerformLogin(user);
 
             Browser.Driver.Url.Should().Be($"{Configuration.Url}inventory.html");
             Pages.InventoryPage.AreProductsDisplayed().Should().BeTrue();
