@@ -1,9 +1,9 @@
 ﻿using OpenQA.Selenium;
-using SeleniumCore.Helpers.BaseClasses;
+using SeleniumCore.Helpers;
 
 namespace SeleniumCore.Pages
 {
-    public class LoginPage : BasePage
+    public class LoginPage
     {
         #region Selectors
 
@@ -15,10 +15,10 @@ namespace SeleniumCore.Pages
 
         public void PerformLogin(string username, string password)
         {
-            WaitUntilElementIsVisible(_loginButton);
-            SendKeys(_userNameInput, username);
-            SendKeys(_passwordInput, password);
-            Submit(_loginButton);
+            _loginButton.WaitUntilElementIsVisible();
+            _userNameInput.SendKeys(username);
+            _passwordInput.SendKeys(password);
+            _loginButton.Submit();
         }
     }
 }

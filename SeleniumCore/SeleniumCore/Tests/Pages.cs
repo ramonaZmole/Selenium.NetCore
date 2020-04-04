@@ -13,5 +13,6 @@ namespace SeleniumCore.Tests
         }
 
         public static LoginPage LoginPage => InitPage(new LoginPage());
+        public static InventoryPage InventoryPage => InitPage(new InventoryPage());
     }
 }
