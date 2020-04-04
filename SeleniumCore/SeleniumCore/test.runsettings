@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+
+  <!-- Configurations that affect the Test Framework -->
+  <!--<RunConfiguration>
+    <DisableParallelization>true</DisableParallelization>
+  </RunConfiguration>-->
+  
+  <!-- MSTest adapter -->
+  <MSTest>
+    <Parallelize>
+      <Workers>1</Workers>
+      <Scope>ClassLevel</Scope>
+    </Parallelize>
+  </MSTest>
+
+</RunSettings>
