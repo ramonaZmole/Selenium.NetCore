@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Reflection;
 using FluentAssertions;
 using OpenQA.Selenium;
@@ -8,6 +9,7 @@ namespace SeleniumCore.Helpers
 {
     public static class Browser
     {
+        [ThreadStatic]
         public static IWebDriver Driver;
 
         public static void StartDriver(bool useHeadless = true)

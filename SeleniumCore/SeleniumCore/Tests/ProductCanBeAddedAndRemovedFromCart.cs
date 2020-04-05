@@ -10,8 +10,8 @@ namespace SeleniumCore.Tests
     {
         [DataRow(Constants.StandardUser)]
         // [DataRow(Constants.ProblemUser)]
-        [TestCategory("Add to cart")]
-        [TestMethod]
+        //[TestCategory("Add to cart")]
+        [TestMethod, TestCategory("Add to cart")]
         public void ProductCanBeAddedAndBeRemovedFromCartFromHomepageTest(string user)
         {
             Browser.GoTo(Configuration.Url);
