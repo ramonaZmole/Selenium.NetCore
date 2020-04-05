@@ -1,7 +1,7 @@
 ﻿using System;
 using OpenQA.Selenium;
 
-namespace SeleniumCore.Helpers
+namespace SeleniumCore.Helpers.Selenium
 {
     public static class PageHelper
     {

@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SeleniumCore.Helpers;
 using SeleniumCore.Helpers.BaseClasses;
+using SeleniumCore.Helpers.Selenium;
 
 namespace SeleniumCore.Tests
 {
@@ -9,7 +10,7 @@ namespace SeleniumCore.Tests
     public class ProductCanBeAddedAndRemovedFromCart : BaseTest
     {
         [DataRow(Constants.StandardUser)]
-        // [DataRow(Constants.ProblemUser)]
+       // [DataRow(Constants.ProblemUser)]
         //[TestCategory("Add to cart")]
         [TestMethod, TestCategory("Add to cart")]
         public void ProductCanBeAddedAndBeRemovedFromCartFromHomepageTest(string user)

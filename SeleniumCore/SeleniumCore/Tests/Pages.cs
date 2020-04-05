@@ -1,4 +1,5 @@
-﻿using SeleniumCore.Helpers;
+﻿using System;
+using SeleniumCore.Helpers.Selenium;
 using SeleniumCore.Pages;
 using SeleniumExtras.PageObjects;
 
@@ -12,8 +13,18 @@ namespace SeleniumCore.Tests
             return page;
         }
 
-        public static LoginPage LoginPage => InitPage(new LoginPage());
-        public static InventoryPage InventoryPage => InitPage(new InventoryPage());
-        public static ProductDetailsPage ProductDetailsPage => InitPage(new ProductDetailsPage());
+        [ThreadStatic]
+        public static LoginPage LoginPage;
+        [ThreadStatic]
+        public static InventoryPage InventoryPage;
+        [ThreadStatic]
+        public static ProductDetailsPage ProductDetailsPage;
+
+        public static void InitializePages()
+        {
+            LoginPage = InitPage(new LoginPage());
+            InventoryPage = InitPage(new InventoryPage());
+            ProductDetailsPage = InitPage(new ProductDetailsPage());
+        }
     }
 }

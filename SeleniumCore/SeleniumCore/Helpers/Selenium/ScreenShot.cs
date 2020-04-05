@@ -3,7 +3,7 @@ using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 
-namespace SeleniumCore.Helpers
+namespace SeleniumCore.Helpers.Selenium
 {
     internal class ScreenShot
     {

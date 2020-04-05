@@ -5,7 +5,7 @@ using FluentAssertions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
-namespace SeleniumCore.Helpers
+namespace SeleniumCore.Helpers.Selenium
 {
     public static class Browser
     {

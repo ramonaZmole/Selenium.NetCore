@@ -1,4 +1,4 @@
-﻿namespace SeleniumCore.Helpers
+﻿namespace SeleniumCore.Helpers.Models
 {
     public class AppSettings
     {

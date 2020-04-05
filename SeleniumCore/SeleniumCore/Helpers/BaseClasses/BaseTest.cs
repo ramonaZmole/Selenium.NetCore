@@ -1,4 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SeleniumCore.Helpers.Models;
+using SeleniumCore.Helpers.Selenium;
 
 namespace SeleniumCore.Helpers.BaseClasses
 {
@@ -12,6 +14,7 @@ namespace SeleniumCore.Helpers.BaseClasses
         public void Setup()
         {
             Browser.StartDriver();
+            Tests.Pages.InitializePages();
         }
 
         [TestCleanup]
