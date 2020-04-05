@@ -10,6 +10,7 @@ namespace SeleniumCore.Tests
     {
         [DataRow(Constants.StandardUser)]
         // [DataRow(Constants.ProblemUser)]
+        [TestCategory("Add to cart")]
         [TestMethod]
         public void ProductCanBeAddedAndBeRemovedFromCartFromHomepageTest(string user)
         {
@@ -34,6 +35,7 @@ namespace SeleniumCore.Tests
         //[DataRow(Constants.ProblemUser, 1)]
         //[DataRow(Constants.ProblemUser, 2)]
         //[DataRow(Constants.ProblemUser, 3)]
+        [TestCategory("Add to cart")]
         [TestMethod]
         public void ProductCanBeAddedAndBeRemovedFromCartFromProductDetailsPageTest(string user, int materialIndex)
         {

@@ -11,6 +11,7 @@ namespace SeleniumCore.Tests
         [DataRow(Constants.StandardUser)]
         //[DataRow(Constants.ProblemUser)]
         //[DataRow(Constants.LockedOutUser)]
+        [TestCategory("Login")]
         [TestMethod]
         public void UserCanLogInTest(string user)
         {
