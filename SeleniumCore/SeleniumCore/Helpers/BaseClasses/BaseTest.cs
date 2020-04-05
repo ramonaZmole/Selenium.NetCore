@@ -4,7 +4,7 @@ using SeleniumCore.Helpers.Selenium;
 
 namespace SeleniumCore.Helpers.BaseClasses
 {
-    public class BaseTest
+    public abstract class BaseTest
     {
         public AppSettings Configuration = ConfigurationRoot.GetApplicationConfiguration();
         public TestContext TestContext { get; set; }
