@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NsTestFrameworkUI.Helpers;
 using SeleniumCore.Helpers;
 using SeleniumCore.Helpers.BaseClasses;
-using SeleniumCore.Helpers.Selenium;
 
 namespace SeleniumCore.Tests
 {
@@ -10,12 +10,12 @@ namespace SeleniumCore.Tests
     public class ProductCanBeAddedAndRemovedFromCart : BaseTest
     {
         [DataRow(Constants.StandardUser)]
-       // [DataRow(Constants.ProblemUser)]
-        //[TestCategory("Add to cart")]
+        //[DataRow(Constants.ProblemUser)]
+        [TestCategory("Add to cart")]
         [TestMethod, TestCategory("Add to cart")]
         public void ProductCanBeAddedAndBeRemovedFromCartFromHomepageTest(string user)
         {
-            Browser.GoTo(Configuration.Url);
+            Browser.Goto(Configuration.Url);
 
             Pages.LoginPage.PerformLogin(user);
             Pages.InventoryPage.DoesAllButtonsContainAddToCartText().Should().BeTrue();
@@ -40,7 +40,7 @@ namespace SeleniumCore.Tests
         [TestMethod]
         public void ProductCanBeAddedAndBeRemovedFromCartFromProductDetailsPageTest(string user, int materialIndex)
         {
-            Browser.GoTo(Configuration.Url);
+            Browser.Goto(Configuration.Url);
 
             Pages.LoginPage.PerformLogin(user);
             var price = Pages.InventoryPage.GetPrice(materialIndex);

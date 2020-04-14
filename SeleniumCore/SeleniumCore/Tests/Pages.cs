@@ -1,5 +1,5 @@
 ﻿using System;
-using SeleniumCore.Helpers.Selenium;
+using NsTestFrameworkUI.Helpers;
 using SeleniumCore.Pages;
 using SeleniumExtras.PageObjects;
 

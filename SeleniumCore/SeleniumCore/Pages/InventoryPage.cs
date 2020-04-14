@@ -1,7 +1,8 @@
 ﻿using System.Linq;
+using NsTestFrameworkUI.Helpers;
+using NsTestFrameworkUI.Pages;
 using OpenQA.Selenium;
 using SeleniumCore.Helpers;
-using SeleniumCore.Helpers.Selenium;
 
 namespace SeleniumCore.Pages
 {
@@ -18,7 +19,7 @@ namespace SeleniumCore.Pages
 
         public bool AreProductsDisplayed()
         {
-            return _productsContainer.IsElementDisplayed();
+            return _productsContainer.IsElementPresent();
         }
 
         public bool DoesAllButtonsContainAddToCartText()
@@ -35,7 +36,7 @@ namespace SeleniumCore.Pages
 
             var productIndex = productNameList.IndexOf(productNameList.First(x => string.Equals(x.Text, productName)));
             addToCartButtons[productIndex].Click();
-            WaitHelper.ExplicitWait();
+            WaitHelpers.ExplicitWait();
         }
 
         public void GoToProductDetailsPage(int index)

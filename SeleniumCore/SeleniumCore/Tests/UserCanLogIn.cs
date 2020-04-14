@@ -1,8 +1,8 @@
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NsTestFrameworkUI.Helpers;
 using SeleniumCore.Helpers;
 using SeleniumCore.Helpers.BaseClasses;
-using SeleniumCore.Helpers.Selenium;
 
 namespace SeleniumCore.Tests
 {
@@ -16,11 +16,11 @@ namespace SeleniumCore.Tests
         [TestMethod]
         public void UserCanLogInTest(string user)
         {
-            Browser.GoTo(Configuration.Url);
+            Browser.Goto(Configuration.Url);
 
             Pages.LoginPage.PerformLogin(user);
 
-            Browser.Driver.Url.Should().Be($"{Configuration.Url}inventory.html");
+            Browser.WebDriver.Url.Should().Be($"{Configuration.Url}inventory.html");
             Pages.InventoryPage.AreProductsDisplayed().Should().BeTrue();
         }
     }

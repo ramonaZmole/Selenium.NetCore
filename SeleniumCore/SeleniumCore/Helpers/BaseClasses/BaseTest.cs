@@ -1,31 +1,25 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.IO;
+using System.Reflection;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NsTestFrameworkUI.Helpers;
 using SeleniumCore.Helpers.Models;
-using SeleniumCore.Helpers.Selenium;
 
 namespace SeleniumCore.Helpers.BaseClasses
 {
-    public abstract class BaseTest
+    public abstract class BaseTest : NsTestFrameworkUI.BaseTest
     {
         public AppSettings Configuration = ConfigurationRoot.GetApplicationConfiguration();
-        public TestContext TestContext { get; set; }
 
 
         [TestInitialize]
-        public void Setup()
+        public void Before()
         {
-            Browser.StartDriver();
+            var currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            Constants.FullDownloadPath = Path.Combine(currentDirectory, "Download");
+            Directory.CreateDirectory(Constants.FullDownloadPath);
+
+            Browser.InitializeDriver(currentDirectory, !TestContext.TestName.Contains("Download"), Constants.FullDownloadPath);
             Tests.Pages.InitializePages();
-        }
-
-        [TestCleanup]
-        public void CleanUp()
-        {
-            //Browser.CheckLogs();
-            if (TestContext.CurrentTestOutcome.Equals(UnitTestOutcome.Failed))
-                ScreenShot.TakeAndAttachScreenShot(TestContext);
-
-            Browser.Driver.Close();
-            Browser.Driver.Quit();
         }
     }
 }

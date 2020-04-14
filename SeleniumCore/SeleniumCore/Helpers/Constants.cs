@@ -9,5 +9,6 @@
         public const string Password = "secret_sauce";
 
         public const string AddToCart = "ADD TO CART";
+        public static string FullDownloadPath { get; set; }
     }
 }

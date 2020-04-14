@@ -1,6 +1,7 @@
-﻿using OpenQA.Selenium;
+﻿using NsTestFrameworkUI.Helpers;
+using NsTestFrameworkUI.Pages;
+using OpenQA.Selenium;
 using SeleniumCore.Helpers;
-using SeleniumCore.Helpers.Selenium;
 
 namespace SeleniumCore.Pages
 {
@@ -17,14 +18,14 @@ namespace SeleniumCore.Pages
 
         public bool IsAddToCartButtonDisplayed()
         {
-            return _addToCartButton.IsElementDisplayed()
+            return _addToCartButton.IsElementPresent()
                    & GetAddToCartButtonText().Equals(Constants.AddToCart);
         }
 
         public void AddOrRemoveMaterialFromCart()
         {
-            _addToCartButton.Click();
-            WaitHelper.ExplicitWait();
+            _addToCartButton.ActionClick();
+            WaitHelpers.ExplicitWait();
         }
 
         public string GetAddToCartButtonText() => _addToCartButton.GetText();

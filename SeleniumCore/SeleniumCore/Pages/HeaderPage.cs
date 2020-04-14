@@ -1,5 +1,5 @@
-﻿using OpenQA.Selenium;
-using SeleniumCore.Helpers.Selenium;
+﻿using NsTestFrameworkUI.Pages;
+using OpenQA.Selenium;
 
 namespace SeleniumCore.Pages
 {
@@ -13,7 +13,7 @@ namespace SeleniumCore.Pages
 
         public bool IsProductAddedToCart()
         {
-            return _numberOfItemsInCart.IsElementDisplayed();
+            return _numberOfItemsInCart.IsElementPresent();
         }
     }
 }

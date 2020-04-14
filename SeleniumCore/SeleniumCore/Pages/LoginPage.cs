@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using NsTestFrameworkUI.Helpers;
+using NsTestFrameworkUI.Pages;
+using OpenQA.Selenium;
 using SeleniumCore.Helpers;
 using SeleniumCore.Helpers.Selenium;
 
@@ -17,8 +19,8 @@ namespace SeleniumCore.Pages
         public void PerformLogin(string username)
         {
             _loginButton.WaitUntilElementIsVisible();
-            _userNameInput.SendKeys(username);
-            _passwordInput.SendKeys(Constants.Password);
+            _userNameInput.ActionSendKeys(username);
+            _passwordInput.ActionSendKeys(Constants.Password);
             _loginButton.Submit();
         }
     }
