@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NsTestFrameworkUI.Helpers;
 using SeleniumCore.Helpers.Models;
 
-namespace SeleniumCore.Helpers.BaseClasses
+namespace SeleniumCore.Helpers
 {
     public abstract class BaseTest : NsTestFrameworkUI.BaseTest
     {
