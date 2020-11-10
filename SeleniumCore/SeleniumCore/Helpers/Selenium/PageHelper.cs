@@ -7,7 +7,7 @@ namespace SeleniumCore.Helpers.Selenium
     {
         public static void Submit(this By element)
         {
-            Browser.Driver.FindElement(element).Submit();
+            Browser.WebDriver.FindElement(element).Submit();
         }
     }
 }
