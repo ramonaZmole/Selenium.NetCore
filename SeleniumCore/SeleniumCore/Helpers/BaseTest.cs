@@ -4,9 +4,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NsTestFrameworkUI.Helpers;
 using SeleniumCore.Helpers.Models;
 
+[assembly: Parallelize(Workers = 4, Scope = ExecutionScope.MethodLevel)]
+
 namespace SeleniumCore.Helpers
 {
-    public abstract class BaseTest : NsTestFrameworkUI.BaseTest
+    public class BaseTest : NsTestFrameworkUI.BaseTest
     {
         public AppSettings Configuration = ConfigurationRoot.GetApplicationConfiguration();
 
