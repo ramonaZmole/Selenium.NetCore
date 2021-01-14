@@ -14,7 +14,7 @@ namespace SeleniumCore.Tests
         [TestMethod, TestCategory("Add to cart")]
         public void ProductCanBeAddedAndBeRemovedFromCartFromHomepageTest(string user)
         {
-            Browser.Goto(Configuration.Url);
+            Browser.GoTo(Configuration.Url);
 
             Pages.LoginPage.PerformLogin(user);
             Pages.InventoryPage.DoesAllButtonsContainAddToCartText().Should().BeTrue();
@@ -39,7 +39,7 @@ namespace SeleniumCore.Tests
         [TestMethod]
         public void ProductCanBeAddedAndBeRemovedFromCartFromProductDetailsPageTest(string user, int materialIndex)
         {
-            Browser.Goto(Configuration.Url);
+            Browser.GoTo(Configuration.Url);
 
             Pages.LoginPage.PerformLogin(user);
             var price = Pages.InventoryPage.GetPrice(materialIndex);

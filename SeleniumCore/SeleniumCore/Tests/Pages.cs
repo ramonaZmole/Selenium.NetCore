@@ -1,18 +1,11 @@
 ﻿using System;
-using NsTestFrameworkUI.Helpers;
+using NsTestFrameworkUI.Pages;
 using SeleniumCore.Pages;
-using SeleniumExtras.PageObjects;
 
 namespace SeleniumCore.Tests
 {
     internal static class Pages
     {
-        public static T InitPage<T>(T page)
-        {
-            PageFactory.InitElements(Browser.Driver, page);
-            return page;
-        }
-
         [ThreadStatic]
         public static LoginPage LoginPage;
         [ThreadStatic]
@@ -22,9 +15,9 @@ namespace SeleniumCore.Tests
 
         public static void InitializePages()
         {
-            LoginPage = InitPage(new LoginPage());
-            InventoryPage = InitPage(new InventoryPage());
-            ProductDetailsPage = InitPage(new ProductDetailsPage());
+            LoginPage = PageHelpers.InitPage(new LoginPage());
+            InventoryPage = PageHelpers.InitPage(new InventoryPage());
+            ProductDetailsPage = PageHelpers.InitPage(new ProductDetailsPage());
         }
     }
 }

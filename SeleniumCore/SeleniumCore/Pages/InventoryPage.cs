@@ -17,44 +17,38 @@ namespace SeleniumCore.Pages
 
         #endregion
 
-        public bool AreProductsDisplayed()
-        {
-            return _productsContainer.IsElementPresent();
-        }
+        public bool AreProductsDisplayed() => _productsContainer.IsElementPresent();
 
         public bool DoesAllButtonsContainAddToCartText()
         {
-            var addToCartButtons = Browser.Driver.FindElements(_addToCartButtons);
-            return addToCartButtons.Select(x => x.Text)
+            return _addToCartButtons.GetElements()
+                .Select(x => x.Text)
                 .All(x => x.Equals(Constants.AddToCart));
         }
 
-        public void AddOrRemoveProductFromCart(string productName)
+        public void AddOrRemoveProductFromCart(string name)
         {
-            var productNameList = Browser.Driver.FindElements(_productNameList);
-            var addToCartButtons = Browser.Driver.FindElements(_addToCartButtons);
+            var productNameList = _productNameList.GetElements();
+            var addToCartButtons = _addToCartButtons.GetElements();
 
-            var productIndex = productNameList.IndexOf(productNameList.First(x => string.Equals(x.Text, productName)));
+            var productIndex = productNameList.IndexOf(productNameList.First(x => string.Equals(x.Text, name)));
             addToCartButtons[productIndex].Click();
             WaitHelpers.ExplicitWait();
         }
 
         public void GoToProductDetailsPage(int index)
         {
-            var productNameList = Browser.Driver.FindElements(_productNameList);
-            productNameList[index].Click();
+            _productNameList.GetElements()[index].Click();
         }
 
         public string GetPrice(int index)
         {
-            var priceList = Browser.Driver.FindElements(_priceList);
-            return priceList[index].Text;
+            return _priceList.GetElements()[index].Text;
         }
 
         public string GetProductName(in int materialIndex)
         {
-            var productNameList = Browser.Driver.FindElements(_productNameList);
-            return productNameList[materialIndex].Text;
+            return _productNameList.GetElements()[materialIndex].Text;
         }
     }
 }

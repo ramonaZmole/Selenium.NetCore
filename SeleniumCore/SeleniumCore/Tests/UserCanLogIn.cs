@@ -15,7 +15,7 @@ namespace SeleniumCore.Tests
         [TestMethod]
         public void UserCanLogInTest(string user)
         {
-            Browser.Goto(Configuration.Url);
+            Browser.GoTo(Configuration.Url);
 
             Pages.LoginPage.PerformLogin(user);
 
