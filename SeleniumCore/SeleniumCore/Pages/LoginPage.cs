@@ -1,7 +1,9 @@
-﻿using NsTestFrameworkUI.Helpers;
+﻿using System.Reflection;
+using NsTestFrameworkUI.Helpers;
 using NsTestFrameworkUI.Pages;
 using OpenQA.Selenium;
 using SeleniumCore.Helpers;
+using SeleniumCore.Helpers.ExtentReport;
 using SeleniumCore.Helpers.Selenium;
 
 namespace SeleniumCore.Pages
@@ -22,6 +24,8 @@ namespace SeleniumCore.Pages
             _userNameInput.ActionSendKeys(username);
             _passwordInput.ActionSendKeys(Constants.Password);
             _loginButton.Submit();
+            ExtentTestManager.GetTest()
+                .CreateStep(MethodBase.GetCurrentMethod().Name, $"Logged in with {username}");
         }
     }
 }

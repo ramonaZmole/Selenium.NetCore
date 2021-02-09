@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NsTestFrameworkUI.Helpers;
 using SeleniumCore.Helpers;
 
 namespace SeleniumCore.Tests
@@ -14,7 +13,7 @@ namespace SeleniumCore.Tests
         [TestMethod, TestCategory("Add to cart")]
         public void ProductCanBeAddedAndBeRemovedFromCartFromHomepageTest(string user)
         {
-            Browser.GoTo(Configuration.Url);
+            GoTo(Configuration.Url);
 
             Pages.LoginPage.PerformLogin(user);
             Pages.InventoryPage.DoesAllButtonsContainAddToCartText().Should().BeTrue();
@@ -30,8 +29,8 @@ namespace SeleniumCore.Tests
         }
 
         [DataRow(Constants.StandardUser, 1)]
-        [DataRow(Constants.StandardUser, 2)]
-        [DataRow(Constants.StandardUser, 3)]
+        // [DataRow(Constants.StandardUser, 2)]
+        // [DataRow(Constants.StandardUser, 3)]
         //[DataRow(Constants.ProblemUser, 1)]
         //[DataRow(Constants.ProblemUser, 2)]
         //[DataRow(Constants.ProblemUser, 3)]
@@ -39,7 +38,7 @@ namespace SeleniumCore.Tests
         [TestMethod]
         public void ProductCanBeAddedAndBeRemovedFromCartFromProductDetailsPageTest(string user, int materialIndex)
         {
-            Browser.GoTo(Configuration.Url);
+            GoTo(Configuration.Url);
 
             Pages.LoginPage.PerformLogin(user);
             var price = Pages.InventoryPage.GetPrice(materialIndex);
@@ -47,6 +46,7 @@ namespace SeleniumCore.Tests
 
             Pages.InventoryPage.GoToProductDetailsPage(materialIndex);
             Pages.ProductDetailsPage.IsAddToCartButtonDisplayed().Should().BeTrue();
+            //  ShouldBe(price, Pages.ProductDetailsPage.Price());
             Pages.ProductDetailsPage.Price().Should().Be(price);
             Pages.ProductDetailsPage.ProductName().Should().Be(productName);
 

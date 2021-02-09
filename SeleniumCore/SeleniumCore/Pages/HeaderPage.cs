@@ -1,5 +1,7 @@
-﻿using NsTestFrameworkUI.Pages;
+﻿using System.Reflection;
+using NsTestFrameworkUI.Pages;
 using OpenQA.Selenium;
+using SeleniumCore.Helpers.ExtentReport;
 
 namespace SeleniumCore.Pages
 {
@@ -13,6 +15,7 @@ namespace SeleniumCore.Pages
 
         public bool IsProductAddedToCart()
         {
+            ExtentTestManager.GetTest().CreateStep(MethodBase.GetCurrentMethod().Name);
             return _numberOfItemsInCart.IsElementPresent();
         }
     }

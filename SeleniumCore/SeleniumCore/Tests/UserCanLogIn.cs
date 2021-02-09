@@ -9,13 +9,13 @@ namespace SeleniumCore.Tests
     public class UserCanLogIn : BaseTest
     {
         [DataRow(Constants.StandardUser)]
-        //[DataRow(Constants.ProblemUser)]
+        [DataRow(Constants.ProblemUser)]
         //[DataRow(Constants.LockedOutUser)]
         [TestCategory("Login")]
-        [TestMethod]
+        [DataTestMethod]
         public void UserCanLogInTest(string user)
         {
-            Browser.GoTo(Configuration.Url);
+            GoTo(Configuration.Url);
 
             Pages.LoginPage.PerformLogin(user);
 

@@ -1,8 +1,10 @@
 ﻿using System.Linq;
+using System.Reflection;
 using NsTestFrameworkUI.Helpers;
 using NsTestFrameworkUI.Pages;
 using OpenQA.Selenium;
 using SeleniumCore.Helpers;
+using SeleniumCore.Helpers.ExtentReport;
 
 namespace SeleniumCore.Pages
 {
@@ -17,10 +19,15 @@ namespace SeleniumCore.Pages
 
         #endregion
 
-        public bool AreProductsDisplayed() => _productsContainer.IsElementPresent();
+        public bool AreProductsDisplayed()
+        {
+            ExtentTestManager.GetTest().CreateStep(MethodBase.GetCurrentMethod().Name);
+            return _productsContainer.IsElementPresent();
+        }
 
         public bool DoesAllButtonsContainAddToCartText()
         {
+            ExtentTestManager.GetTest().CreateStep(MethodBase.GetCurrentMethod().Name);
             return _addToCartButtons.GetElements()
                 .Select(x => x.Text)
                 .All(x => x.Equals(Constants.AddToCart));
@@ -34,20 +41,24 @@ namespace SeleniumCore.Pages
             var productIndex = productNameList.IndexOf(productNameList.First(x => string.Equals(x.Text, name)));
             addToCartButtons[productIndex].Click();
             WaitHelpers.ExplicitWait();
+            ExtentTestManager.GetTest().CreateStep(MethodBase.GetCurrentMethod().Name);
         }
 
         public void GoToProductDetailsPage(int index)
         {
             _productNameList.GetElements()[index].Click();
+            ExtentTestManager.GetTest().CreateStep(MethodBase.GetCurrentMethod().Name);
         }
 
         public string GetPrice(int index)
         {
+            ExtentTestManager.GetTest().CreateStep(MethodBase.GetCurrentMethod().Name);
             return _priceList.GetElements()[index].Text;
         }
 
         public string GetProductName(in int materialIndex)
         {
+            ExtentTestManager.GetTest().CreateStep(MethodBase.GetCurrentMethod().Name);
             return _productNameList.GetElements()[materialIndex].Text;
         }
     }
