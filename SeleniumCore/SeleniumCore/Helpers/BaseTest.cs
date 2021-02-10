@@ -29,7 +29,7 @@ namespace SeleniumCore.Helpers
             Directory.CreateDirectory(Constants.FullDownloadPath);
 
             var isHeadless = !TestContext.TestName.Contains("Download");
-            Browser.InitializeDriver(CurrentDirectory, isHeadless, Constants.FullDownloadPath);
+            Browser.InitializeDriver(isHeadless, Constants.FullDownloadPath);
 
             ExtentTestManager.CreateTest(TestContext.TestName);
         }
