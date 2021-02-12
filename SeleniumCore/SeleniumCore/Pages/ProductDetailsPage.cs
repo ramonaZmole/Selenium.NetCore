@@ -47,7 +47,6 @@ namespace SeleniumCore.Pages
 
         public string ProductName()
         {
-            ExtentTestManager.GetTest().CreateStep(MethodBase.GetCurrentMethod().Name);
             return _productName.GetText();
         }
     }

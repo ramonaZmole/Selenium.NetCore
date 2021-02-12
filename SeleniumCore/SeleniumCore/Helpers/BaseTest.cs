@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NsTestFrameworkUI.Helpers;
 using SeleniumCore.Helpers.ExtentReport;
@@ -67,10 +66,5 @@ namespace SeleniumCore.Helpers
             ExtentTestManager.GetTest().CreateStep($"{MethodBase.GetCurrentMethod().Name} {url}");
         }
 
-        public void ShouldBe(string actual, string expected)
-        {
-            ExtentTestManager.GetTest().CreateStep($"{actual} should be {expected}");
-            expected.Should().Be(actual);
-        }
     }
 }

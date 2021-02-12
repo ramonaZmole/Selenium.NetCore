@@ -47,12 +47,12 @@ namespace SeleniumCore.Tests
             Pages.InventoryPage.GoToProductDetailsPage(materialIndex);
             Pages.ProductDetailsPage.IsAddToCartButtonDisplayed().Should().BeTrue();
             //  ShouldBe(price, Pages.ProductDetailsPage.Price());
-            Pages.ProductDetailsPage.Price().Should().Be(price);
-            Pages.ProductDetailsPage.ProductName().Should().Be(productName);
+            Pages.ProductDetailsPage.Price().ShouldBe(price);
+            Pages.ProductDetailsPage.ProductName().ShouldBe(productName);
 
             Pages.ProductDetailsPage.AddOrRemoveMaterialFromCart();
             Pages.ProductDetailsPage.IsProductAddedToCart().Should().BeTrue();
-            Pages.ProductDetailsPage.GetAddToCartButtonText().Should().Be("REMOVE");
+            Pages.ProductDetailsPage.GetAddToCartButtonText().ShouldBe("REMOVE");
 
             Pages.ProductDetailsPage.AddOrRemoveMaterialFromCart();
             Pages.ProductDetailsPage.IsProductAddedToCart().Should().BeFalse();
