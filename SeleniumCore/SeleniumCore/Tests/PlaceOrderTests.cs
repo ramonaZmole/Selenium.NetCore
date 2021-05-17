@@ -3,7 +3,7 @@
 namespace SeleniumCore.Tests
 {
     [TestClass]
-    public class OrderCanBePlaced
+    public class PlaceOrderTests
     {
         [TestMethod]
         public void OrderCanBePlacedTest()

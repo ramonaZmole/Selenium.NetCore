@@ -5,7 +5,7 @@ using SeleniumCore.Helpers;
 namespace SeleniumCore.Tests
 {
     [TestClass]
-    public class ProductCanBeAddedAndRemovedFromCart : BaseTest
+    public class AddToCartTests : BaseTest
     {
         [DataRow(Constants.StandardUser)]
         //[DataRow(Constants.ProblemUser)]

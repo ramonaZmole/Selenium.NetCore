@@ -6,7 +6,7 @@ using SeleniumCore.Helpers;
 namespace SeleniumCore.Tests
 {
     [TestClass]
-    public class UserCanLogIn : BaseTest
+    public class LoginTests : BaseTest
     {
         [DataRow(Constants.StandardUser)]
         [DataRow(Constants.ProblemUser)]
