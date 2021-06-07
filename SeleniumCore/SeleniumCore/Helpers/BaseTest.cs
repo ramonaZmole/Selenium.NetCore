@@ -10,8 +10,10 @@ using SeleniumCore.Helpers.Models;
 namespace SeleniumCore.Helpers
 {
     [TestClass]
-    public class BaseTest : NsTestFrameworkUI.BaseTest
+    public class BaseTest
     {
+        public TestContext TestContext { get; set; }
+
         public static AppSettings Configuration = ConfigurationRoot.GetApplicationConfiguration();
         private static readonly string CurrentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
@@ -27,15 +29,23 @@ namespace SeleniumCore.Helpers
             Constants.FullDownloadPath = Path.Combine(CurrentDirectory, "Download");
             Directory.CreateDirectory(Constants.FullDownloadPath);
 
-            var isHeadless = !TestContext.TestName.Contains("Download");
-            Browser.InitializeDriver(isHeadless, Constants.FullDownloadPath);
+            Browser.InitializeDriver(new DriverOptions
+            {
+                IsHeadless = !TestContext.TestName.Contains("Download"),
+                DownloadDirectoryPath = Constants.FullDownloadPath
+            });
 
             ExtentTestManager.CreateTest(TestContext.TestName);
         }
 
         [TestCleanup]
-        public override void After()
+        public void After()
         {
+            if (TestContext.CurrentTestOutcome.Equals(UnitTestOutcome.Failed))
+            {
+                var path = ScreenShot.GetScreenShotPath(TestContext.TestName);
+                TestContext.AddResultFile(path);
+            }
             LogToExtentReport();
             Browser.Cleanup();
         }
