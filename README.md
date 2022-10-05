@@ -4,7 +4,7 @@ This project is setup with .net6 and MSTest
 
 Uses FluentAssertions 
 
-Use NsTestFrameworkUI package for Selenium Helpers
+Use NsTestFrameworkUI package for Selenium Helpers https://github.com/NSIAppDev/TestingFramework
 
 And ExtentReports.Core in order to create Test Reports
 
