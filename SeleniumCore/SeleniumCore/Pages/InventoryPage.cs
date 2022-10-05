@@ -39,9 +39,15 @@ public class InventoryPage : HeaderPage
         var addToCartButtons = _addToCartButtons.GetElements();
 
         var productIndex = productNameList.IndexOf(productNameList.First(x => string.Equals(x.Text, name)));
+
+        var textButton = addToCartButtons[productIndex].Text.ToLower();
+        if (textButton.Equals("add to cart"))
+            ExtentTestManager.GetTest().CreateStep(MethodBase.GetCurrentMethod()?.Name, "Add To Cart");
+        if (textButton.Equals("remove"))
+            ExtentTestManager.GetTest().CreateStep(MethodBase.GetCurrentMethod()?.Name, "Remove from Cart");
+
         addToCartButtons[productIndex].Click();
         WaitHelpers.ExplicitWait();
-        ExtentTestManager.GetTest().CreateStep(MethodBase.GetCurrentMethod()?.Name);
     }
 
     public void GoToProductDetailsPage(int index)
@@ -52,13 +58,11 @@ public class InventoryPage : HeaderPage
 
     public string GetPrice(int index)
     {
-        ExtentTestManager.GetTest().CreateStep(MethodBase.GetCurrentMethod()?.Name);
         return _priceList.GetElements()[index].Text;
     }
 
     public string GetProductName(in int materialIndex)
     {
-        ExtentTestManager.GetTest().CreateStep(MethodBase.GetCurrentMethod()?.Name);
         return _productNameList.GetElements()[materialIndex].Text;
     }
 
@@ -79,9 +83,6 @@ public class InventoryPage : HeaderPage
     public int GetNumberOfProductsUnder10Dollar()
     {
         var prices = _priceList.GetElements();
-
-        ExtentTestManager.GetTest().CreateStep(MethodBase.GetCurrentMethod()?.Name);
-
         return prices.Select(x => x.Text.Trim('$')).Count(x => x.ConvertStringToDecimal() < 10);
     }
 }

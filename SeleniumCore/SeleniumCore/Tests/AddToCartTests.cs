@@ -46,7 +46,6 @@ public class AddToCartTests : BaseTest
 
         Pages.InventoryPage.GoToProductDetailsPage(materialIndex);
         Pages.ProductDetailsPage.IsAddToCartButtonDisplayed().ShouldBe(true);
-        //  ShouldBe(price, Pages.ProductDetailsPage.Price());
         Pages.ProductDetailsPage.Price().ShouldBe(price);
         Pages.ProductDetailsPage.ProductName().ShouldBe(productName);
 

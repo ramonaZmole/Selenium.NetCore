@@ -20,33 +20,26 @@ public class ProductDetailsPage : HeaderPage
 
     public bool IsAddToCartButtonDisplayed()
     {
-        ExtentTestManager.GetTest().CreateNode(MethodBase.GetCurrentMethod()?.Name);
+        ExtentTestManager.GetTest().CreateStep(MethodBase.GetCurrentMethod()?.Name);
         return _addToCartButton.IsElementPresent()
                & GetAddToCartButtonText().Equals(Constants.AddToCart);
     }
 
     public void AddOrRemoveMaterialFromCart()
     {
+        var textButton = _addToCartButton.GetText().ToLower();
+        if (textButton.Equals("add to cart"))
+            ExtentTestManager.GetTest().CreateStep(MethodBase.GetCurrentMethod()?.Name, "Add To Cart");
+        if (textButton.Equals("remove"))
+            ExtentTestManager.GetTest().CreateStep(MethodBase.GetCurrentMethod()?.Name, "Remove from Cart");
+
         _addToCartButton.ActionClick();
         WaitHelpers.ExplicitWait();
-        ExtentTestManager.GetTest().CreateStep(MethodBase.GetCurrentMethod()?.Name, "Add To Cart");
     }
 
-    public string GetAddToCartButtonText()
-    {
-        ExtentTestManager.GetTest().CreateStep(MethodBase.GetCurrentMethod()?.Name);
-        return _addToCartButton.GetText();
-    }
+    public string GetAddToCartButtonText() => _addToCartButton.GetText();
 
-    public string Price()
-    {
-        var price = _price.GetText();
-        ExtentTestManager.GetTest().CreateStep($"Check {MethodBase.GetCurrentMethod()?.Name}", $"Get Product Price {price}");
-        return price;
-    }
+    public string Price() => _price.GetText();
 
-    public string ProductName()
-    {
-        return _productName.GetText();
-    }
+    public string ProductName() => _productName.GetText();
 }
