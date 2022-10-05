@@ -16,16 +16,16 @@ public class AddToCartTests : BaseTest
         GoTo(Configuration.Url);
 
         Pages.LoginPage.PerformLogin(user);
-        Pages.InventoryPage.DoesAllButtonsContainAddToCartText().Should().BeTrue();
+        Pages.InventoryPage.DoesAllButtonsContainAddToCartText().ShouldBe(true);
 
         Pages.InventoryPage.AddOrRemoveProductFromCart("Sauce Labs Bike Light");
 
-        Pages.InventoryPage.DoesAllButtonsContainAddToCartText().Should().BeFalse();
-        Pages.InventoryPage.IsProductAddedToCart().Should().BeTrue();
+        Pages.InventoryPage.DoesAllButtonsContainAddToCartText().ShouldBe(false);
+        Pages.InventoryPage.IsProductAddedToCart().ShouldBe(true);
 
         Pages.InventoryPage.AddOrRemoveProductFromCart("Sauce Labs Bike Light");
-        Pages.InventoryPage.IsProductAddedToCart().Should().BeFalse();
-        Pages.InventoryPage.DoesAllButtonsContainAddToCartText().Should().BeTrue();
+        Pages.InventoryPage.IsProductAddedToCart().ShouldBe(false);
+        Pages.InventoryPage.DoesAllButtonsContainAddToCartText().ShouldBe(true);
     }
 
     [DataRow(Constants.StandardUser, 1)]
@@ -45,16 +45,27 @@ public class AddToCartTests : BaseTest
         var productName = Pages.InventoryPage.GetProductName(materialIndex);
 
         Pages.InventoryPage.GoToProductDetailsPage(materialIndex);
-        Pages.ProductDetailsPage.IsAddToCartButtonDisplayed().Should().BeTrue();
+        Pages.ProductDetailsPage.IsAddToCartButtonDisplayed().ShouldBe(true);
         //  ShouldBe(price, Pages.ProductDetailsPage.Price());
         Pages.ProductDetailsPage.Price().ShouldBe(price);
         Pages.ProductDetailsPage.ProductName().ShouldBe(productName);
 
         Pages.ProductDetailsPage.AddOrRemoveMaterialFromCart();
-        Pages.ProductDetailsPage.IsProductAddedToCart().Should().BeTrue();
+        Pages.ProductDetailsPage.IsProductAddedToCart().ShouldBe(true);
         Pages.ProductDetailsPage.GetAddToCartButtonText().ShouldBe("REMOVE");
 
         Pages.ProductDetailsPage.AddOrRemoveMaterialFromCart();
-        Pages.ProductDetailsPage.IsProductAddedToCart().Should().BeFalse();
+        Pages.ProductDetailsPage.IsProductAddedToCart().ShouldBe(false);
+    }
+
+    [TestCategory("Add to cart")]
+    [TestMethod]
+    public void AddToCartAllProductsUnder10DollarsTest()
+    {
+        GoTo(Configuration.Url);
+
+        Pages.LoginPage.PerformLogin(Constants.StandardUser);
+        Pages.InventoryPage.AddToCartAllProductsThatAreUnder10Dollars();
+        Pages.InventoryPage.GetNumberOfProductsUnder10Dollar().ShouldBe(Pages.InventoryPage.GetNumberOfProductsAddedToCart());
     }
 }

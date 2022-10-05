@@ -41,8 +41,7 @@ public class ProductDetailsPage : HeaderPage
     public string Price()
     {
         var price = _price.GetText();
-        ExtentTestManager.GetTest()
-            .CreateStep($"Check {MethodBase.GetCurrentMethod()?.Name}", $"Get Product Price {price}");
+        ExtentTestManager.GetTest().CreateStep($"Check {MethodBase.GetCurrentMethod()?.Name}", $"Get Product Price {price}");
         return price;
     }
 

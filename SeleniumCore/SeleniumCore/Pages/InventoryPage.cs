@@ -61,4 +61,27 @@ public class InventoryPage : HeaderPage
         ExtentTestManager.GetTest().CreateStep(MethodBase.GetCurrentMethod()?.Name);
         return _productNameList.GetElements()[materialIndex].Text;
     }
+
+    public void AddToCartAllProductsThatAreUnder10Dollars()
+    {
+        var prices = _priceList.GetElements();
+        var addToCartButtons = _addToCartButtons.GetElements();
+
+        for (var i = 0; i < prices.Count; i++)
+        {
+            if (prices[i].Text.Trim('$').ConvertStringToDecimal() < 10)
+                addToCartButtons[i].Click();
+        }
+
+        ExtentTestManager.GetTest().CreateStep(MethodBase.GetCurrentMethod()?.Name);
+    }
+
+    public int GetNumberOfProductsUnder10Dollar()
+    {
+        var prices = _priceList.GetElements();
+
+        ExtentTestManager.GetTest().CreateStep(MethodBase.GetCurrentMethod()?.Name);
+
+        return prices.Select(x => x.Text.Trim('$')).Count(x => x.ConvertStringToDecimal() < 10);
+    }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using NsTestFrameworkUI.Helpers;
 using NsTestFrameworkUI.Pages;
 using OpenQA.Selenium;
 using SeleniumCore.Helpers.ExtentReport;
@@ -17,5 +18,11 @@ public abstract class HeaderPage
     {
         ExtentTestManager.GetTest().CreateStep(MethodBase.GetCurrentMethod()?.Name);
         return _numberOfItemsInCart.IsElementPresent();
+    }
+
+    public int GetNumberOfProductsAddedToCart()
+    {
+        ExtentTestManager.GetTest().CreateStep(MethodBase.GetCurrentMethod()?.Name);
+        return _numberOfItemsInCart.GetText().ConvertStringToInt32();
     }
 }

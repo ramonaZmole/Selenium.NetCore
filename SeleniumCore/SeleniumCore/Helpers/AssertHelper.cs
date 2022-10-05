@@ -11,4 +11,15 @@ public static class AssertHelper
         actual.Should().Be(expected);
     }
 
+    public static void ShouldBe(this int actual, int expected)
+    {
+        ExtentTestManager.GetTest().Info($"Actual: {actual} Expected: {expected}");
+        actual.Should().Be(expected);
+    }
+
+    public static void ShouldBe(this bool actual, bool expected)
+    {
+        ExtentTestManager.GetStep().Info($"Actual: {actual} Expected: {expected}");
+        actual.Should().Be(expected);
+    }
 }

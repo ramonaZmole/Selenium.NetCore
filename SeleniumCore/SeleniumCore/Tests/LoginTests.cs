@@ -1,4 +1,3 @@
-using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NsTestFrameworkUI.Helpers;
 using SeleniumCore.Helpers;
@@ -19,7 +18,17 @@ public class LoginTests : BaseTest
 
         Pages.LoginPage.PerformLogin(user);
 
-        Browser.WebDriver.Url.Should().Be($"{Configuration.Url}inventory.html");
-        Pages.InventoryPage.AreProductsDisplayed().Should().BeTrue();
+        Browser.WebDriver.Url.ShouldBe($"{Configuration.Url}inventory.html");
+        Pages.InventoryPage.AreProductsDisplayed().ShouldBe(true);
+    }
+
+    [TestMethod]
+    [TestCategory("Login")]
+    public void UserCanNotLoginIfIsLockedOutTest()
+    {
+        GoTo(Configuration.Url);
+        Pages.LoginPage.PerformLogin(Constants.LockedOutUser);
+        Pages.LoginPage.IsErrorDisplayed().ShouldBe(true);
+        Browser.WebDriver.Url.ShouldBe(Configuration.Url);
     }
 }

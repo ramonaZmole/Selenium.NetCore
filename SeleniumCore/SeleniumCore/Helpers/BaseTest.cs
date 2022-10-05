@@ -73,7 +73,8 @@ public class BaseTest
 
     public static void GoTo(string url)
     {
-        Browser.GoTo(url);
+        //Browser.GoTo(url);
+        Browser.WebDriver.Navigate().GoToUrl(url);
         ExtentTestManager.GetTest().CreateStep($"{MethodBase.GetCurrentMethod()?.Name} {url}");
     }
 
