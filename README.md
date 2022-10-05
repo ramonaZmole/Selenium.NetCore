@@ -9,3 +9,7 @@ Use NsTestFrameworkUI package for Selenium Helpers
 And ExtentReports.Core in order to create Test Reports
 
 
+
+Screenshots can be found in Selenium.NetCore\SeleniumCore\SeleniumCore\bin\Debug\net6.0\Screenshots
+
+Reports can be found in C:\Users\rzmole\source\repos\Selenium.NetCore\SeleniumCore\SeleniumCore\bin\Debug\net6.0\Reports
