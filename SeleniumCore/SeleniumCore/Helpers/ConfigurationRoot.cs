@@ -2,41 +2,40 @@
 using Microsoft.Extensions.Configuration;
 using SeleniumCore.Helpers.Models;
 
-namespace SeleniumCore.Helpers
+namespace SeleniumCore.Helpers;
+
+internal class ConfigurationRoot
 {
-    internal class ConfigurationRoot
+    private static string Environment
     {
-        private static string Environment
+        get
         {
-            get
+            var environment = System.Environment.GetEnvironmentVariable("ASPNETCORE");
+            if (string.IsNullOrEmpty(environment))
             {
-                var environment = System.Environment.GetEnvironmentVariable("ASPNETCORE");
-                if (string.IsNullOrEmpty(environment))
-                {
-                    environment = "dev";
-                }
-                return environment;
+                environment = "dev";
             }
+            return environment;
         }
+    }
 
-        private static IConfigurationRoot GetIConfigurationRoot(string outputPath)
-        {
-            return new ConfigurationBuilder()
-                .SetBasePath(outputPath)
-                .AddJsonFile("appsettings.json")
-                .AddJsonFile($"appsettings.{Environment}.json", optional: true)
-                .Build();
-        }
+    private static IConfigurationRoot GetIConfigurationRoot(string outputPath)
+    {
+        return new ConfigurationBuilder()
+            .SetBasePath(outputPath)
+            .AddJsonFile("appsettings.json")
+            .AddJsonFile($"appsettings.{Environment}.json", optional: true)
+            .Build();
+    }
 
-        public static AppSettings GetApplicationConfiguration()
-        {
-            var configuration = new AppSettings();
+    public static AppSettings GetApplicationConfiguration()
+    {
+        var configuration = new AppSettings();
 
-            var iConfig = GetIConfigurationRoot(AppContext.BaseDirectory);
+        var iConfig = GetIConfigurationRoot(AppContext.BaseDirectory);
 
-            iConfig.GetSection("AppSettings").Bind(configuration);
+        iConfig.GetSection("AppSettings").Bind(configuration);
 
-            return configuration;
-        }
+        return configuration;
     }
 }

@@ -1,8 +1,7 @@
-﻿namespace SeleniumCore.Helpers.Models
+﻿namespace SeleniumCore.Helpers.Models;
+
+public class AppSettings
 {
-    public class AppSettings
-    {
-        public string Url { get; set; }
-        public string Environment { get; set; }
-    }
+    public string Url { get; set; }
+    public string Environment { get; set; }
 }

@@ -6,26 +6,25 @@ using SeleniumCore.Helpers;
 using SeleniumCore.Helpers.ExtentReport;
 using SeleniumCore.Helpers.Selenium;
 
-namespace SeleniumCore.Pages
+namespace SeleniumCore.Pages;
+
+public class LoginPage
 {
-    public class LoginPage
+    #region Selectors
+
+    private readonly By _userNameInput = By.Id("user-name");
+    private readonly By _passwordInput = By.Id("password");
+    private readonly By _loginButton = By.ClassName("btn_action");
+
+    #endregion
+
+    public void PerformLogin(string username)
     {
-        #region Selectors
-
-        private readonly By _userNameInput = By.Id("user-name");
-        private readonly By _passwordInput = By.Id("password");
-        private readonly By _loginButton = By.ClassName("btn_action");
-
-        #endregion
-
-        public void PerformLogin(string username)
-        {
-            _loginButton.WaitUntilElementIsVisible();
-            _userNameInput.ActionSendKeys(username);
-            _passwordInput.ActionSendKeys(Constants.Password);
-            _loginButton.Submit();
-            ExtentTestManager.GetTest()
-                .CreateStep(MethodBase.GetCurrentMethod().Name, $"Logged in with {username}");
-        }
+        _loginButton.WaitUntilElementIsVisible();
+        _userNameInput.ActionSendKeys(username);
+        _passwordInput.ActionSendKeys(Constants.Password);
+        _loginButton.Submit();
+        ExtentTestManager.GetTest()
+            .CreateStep(MethodBase.GetCurrentMethod()?.Name, $"Logged in with {username}");
     }
 }

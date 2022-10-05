@@ -3,24 +3,23 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NsTestFrameworkUI.Helpers;
 using SeleniumCore.Helpers;
 
-namespace SeleniumCore.Tests
+namespace SeleniumCore.Tests;
+
+[TestClass]
+public class LoginTests : BaseTest
 {
-    [TestClass]
-    public class LoginTests : BaseTest
+    [DataRow(Constants.StandardUser)]
+    [DataRow(Constants.ProblemUser)]
+    //[DataRow(Constants.LockedOutUser)]
+    [TestCategory("Login")]
+    [DataTestMethod]
+    public void UserCanLogInTest(string user)
     {
-        [DataRow(Constants.StandardUser)]
-        [DataRow(Constants.ProblemUser)]
-        //[DataRow(Constants.LockedOutUser)]
-        [TestCategory("Login")]
-        [DataTestMethod]
-        public void UserCanLogInTest(string user)
-        {
-            GoTo(Configuration.Url);
+        GoTo(Configuration.Url);
 
-            Pages.LoginPage.PerformLogin(user);
+        Pages.LoginPage.PerformLogin(user);
 
-            Browser.WebDriver.Url.Should().Be($"{Configuration.Url}inventory.html");
-            Pages.InventoryPage.AreProductsDisplayed().Should().BeTrue();
-        }
+        Browser.WebDriver.Url.Should().Be($"{Configuration.Url}inventory.html");
+        Pages.InventoryPage.AreProductsDisplayed().Should().BeTrue();
     }
 }
