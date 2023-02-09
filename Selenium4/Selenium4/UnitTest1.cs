@@ -2,7 +2,11 @@ using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.DevTools.V87.Network;
+//using OpenQA.Selenium.DevTools.V85.Network;
+using OpenQA.Selenium.DevTools.V109.Network;
+//using OpenQA.Selenium.DevTools.V87.Network;
+using WebDriverManager;
+using WebDriverManager.DriverConfigs.Impl;
 
 namespace Selenium4
 {
@@ -14,6 +18,7 @@ namespace Selenium4
         [TestInitialize]
         public void BeforeAll()
         {
+            new DriverManager().SetUpDriver(new ChromeConfig());
             Driver = new ChromeDriver();
             Driver.Navigate().GoToUrl("http://automationpractice.com/index.php");
         }
@@ -31,11 +36,11 @@ namespace Selenium4
             searchInput = Driver.FindElement(By.Name("search_query"));
             searchInput.SendKeys(" demo 2");
 
-            Driver.FindElement(RelativeBy.WithTagName("button").Above(By.Id("block_top_menu"))).Click();
+         //   Driver.FindElement(RelativeBy.WithTagName("button").Above(By.Id("block_top_menu"))).Click();
             searchInput = Driver.FindElement(By.Name("search_query"));
             searchInput.SendKeys(" xxx");
 
-            var session = Driver.CreateDevToolsSession();
+      //      var session = Driver.CreateDevToolsSession();
 
             var blockedUrlSettings = new SetBlockedURLsCommandSettings();
             blockedUrlSettings.Urls = new string[] { "http://demos.bellatrix.solutions/wp-content/uploads/2018/04/440px-Launch_Vehicle__Verticalization__Proton-M-324x324.jpg" };
